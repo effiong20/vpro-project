@@ -6,6 +6,18 @@ pipeline {
         maven "mvn"
         jdk "jdk-8"
     }	
+  
+      environment {
+      SNAP_REPO = 'maven-snap'
+      NEXUS_USER = 'admin'
+      NEXUS_PASS = 'admin123'
+      RELEASE_REPO = 'maven-hosted'
+      CENTRAL_REPO = 'maven-proxy'
+      NEXUSIP = '172.31.39.81'
+      NEXUSPORT = '8081'
+      NEXUS_GRP_REPO = 'maven-group'
+      NEXUS_LOGIN = 'nexus'
+    }
   stages{
         
         stage('BUILD'){
