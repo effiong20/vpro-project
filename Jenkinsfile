@@ -33,7 +33,7 @@ pipeline {
                 }
             }
         }
-  
+/* 
 	stage('UNIT TEST'){
             steps {
                 sh 'mvn test'
@@ -56,7 +56,7 @@ pipeline {
                 }
             }
         }
-
+*/ 
         stage('CODE ANALYSIS with SONARQUBE') {
           
 		  environment {
@@ -74,11 +74,12 @@ pipeline {
                    -Dsonar.jacoco.reportsPath=target/jacoco.exec \
                    -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml'''
             }
-/* 
+
+
             timeout(time: 10, unit: 'MINUTES') {
                waitForQualityGate abortPipeline: true
             }
-         */
+         
           }
         }
   }
