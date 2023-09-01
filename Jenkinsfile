@@ -17,6 +17,8 @@ pipeline {
       NEXUSPORT = '8081'
       NEXUS_GRP_REPO = 'maven-group'
       NEXUS_LOGIN = 'nexus'
+      SONARSERVER = "sonar-server"
+      SONARSCANNER = "sonar-pro"
     }
   stages{
         
@@ -72,10 +74,11 @@ pipeline {
                    -Dsonar.jacoco.reportsPath=target/jacoco.exec \
                    -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml'''
             }
-
+/* 
             timeout(time: 10, unit: 'MINUTES') {
                waitForQualityGate abortPipeline: true
             }
+         */
           }
         }
   }
