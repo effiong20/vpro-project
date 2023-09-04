@@ -22,7 +22,7 @@ pipeline {
     }
   stages{
         
-        stage('BUILD'){
+        stage('BUILD') {
             steps {
                 sh 'mvn clean install'
             }
@@ -53,7 +53,7 @@ pipeline {
                 }
             }
         }
-        stage('CODE ANALYSIS with SONARQUBE') {
+        stage('CODE ANALYSIS with SONARQUBE'){
 		  environment {
              scannerHome = tool 'sonar-pro'
           }
@@ -69,7 +69,8 @@ pipeline {
                    -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml'''
             }
           }
-        stage("Quality Gate") {
+        }
+        stage("Quality Gate"){
             steps {
             timeout(time: 10, unit: 'MINUTES') {
                waitForQualityGate abortPipeline: true
@@ -77,8 +78,8 @@ pipeline {
         
           }
         }
-    stage ("Artifact uplaoder"){
-      steps {
+    stage("Artifact uplaoder"){
+         steps {
     nexusArtifactUploader(
         nexusVersion: 'nexus3',
         protocol: 'http',
@@ -98,7 +99,7 @@ pipeline {
     }
   }
 }
-}
+
 
 
 
