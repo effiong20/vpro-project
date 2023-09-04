@@ -75,6 +75,7 @@ pipeline {
           }
         }
     stage ("Artifact uplaoder"){
+      step{
     nexusArtifactUploader(
         nexusVersion: 'nexus3',
         protocol: 'http',
@@ -90,6 +91,7 @@ pipeline {
              type: 'war']
         ]
      )
+    }
     }
   }
 }
