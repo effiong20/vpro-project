@@ -43,9 +43,9 @@ pipeline {
                 sh 'mvn verify -DskipUnitTests'
             }
         }
-        stage ('CODE ANALYSIS WITH CHECKSTYLE'){
+        stage ('ANALYSIS WITH CHECKSTYLE'){
             steps {
-                sh 'mvn checkstyle:checkstyle'
+               sh 'mvn checkstyle:checkstyle'
             }
             post {
                 success {
@@ -69,7 +69,7 @@ pipeline {
                    -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml'''
             }
           }
-           stage("Quality Gate") {
+        stage("Quality Gate") {
             steps {
             timeout(time: 10, unit: 'MINUTES') {
                waitForQualityGate abortPipeline: true
@@ -98,8 +98,8 @@ pipeline {
     }
   }
 }
+}
 
-}  
 
 
 
