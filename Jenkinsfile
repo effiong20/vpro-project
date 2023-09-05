@@ -17,7 +17,7 @@ pipeline{
       SONARSERVER = "sonar-server"
       SONARSCANNER = "sonar-pro"
     }
-stages{
+   stages{
         stage('BUILD'){
             steps {
                 sh 'mvn clean install'
@@ -82,12 +82,12 @@ stages{
         nexusVersion: 'nexus3',
         protocol: 'http',
         nexusUrl: '${NEXUSIP}:${NEXUSPORT}',
-        groupId: 'visualpath',
+        groupId: 'QA',
         version: "${env.BUILD_ID}-${env.BUILD_TIMESTAMP}",
         repository: '${RELEASE_REPO}',
         credentialsId: '${NEXUS_LOGIN}',
         artifacts: [
-            [artifactId: "vprofile",
+            [artifactId: "vproapp",
              classifier: '',
              file: 'target/vprofile-v2.war',
              type: 'war']
