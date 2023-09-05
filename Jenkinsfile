@@ -1,10 +1,10 @@
 pipeline{
-	agent any
+	agent "any"
 	tools {
         maven "mvn"
         jdk "jdk-8"
     }	
-      environment {
+    environment {
       SNAP_REPO = 'maven-snap'
       NEXUS_USER = 'admin'
       NEXUS_PASS = 'admin123'
@@ -23,12 +23,12 @@ stages{
                 sh 'mvn clean install'
             }
             post {
-                success {
+                success 
                     echo 'Now Archiving...'
                     archiveArtifacts artifacts: '**/*.war'
                 }
             }
-        }
+        
 	    stage('UNIT TEST'){
             steps {
                 sh 'mvn test'
@@ -66,6 +66,7 @@ stages{
             }
           }
         }
+ 
         stage("Quality Gate"){
             steps {
             timeout(time: 1, unit: 'MINUTES') {
@@ -74,6 +75,7 @@ stages{
         
           }
         }
+  
         stage("Artifact uplaoder"){
          steps {
          nexusArtifactUploader(
@@ -95,6 +97,7 @@ stages{
     }
   }
 }
+
 
 
 
