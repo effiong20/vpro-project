@@ -1,12 +1,9 @@
-pipeline {
-    
+pipeline{
 	agent any
-
 	tools {
         maven "mvn"
         jdk "jdk-8"
     }	
-  
       environment {
       SNAP_REPO = 'maven-snap'
       NEXUS_USER = 'admin'
@@ -20,9 +17,8 @@ pipeline {
       SONARSERVER = "sonar-server"
       SONARSCANNER = "sonar-pro"
     }
-  stages{
-        
-        stage('BUILD') {
+stages{
+        stage('BUILD'){
             steps {
                 sh 'mvn clean install'
             }
@@ -33,12 +29,12 @@ pipeline {
                 }
             }
         }
-	stage('UNIT TEST'){
+	    stage('UNIT TEST'){
             steps {
                 sh 'mvn test'
             }
         }
-	stage('INTEGRATION TEST'){
+	    stage('INTEGRATION TEST'){
             steps {
                 sh 'mvn verify -DskipUnitTests'
             }
@@ -78,9 +74,9 @@ pipeline {
         
           }
         }
-    stage("Artifact uplaoder"){
+        stage("Artifact uplaoder"){
          steps {
-    nexusArtifactUploader(
+         nexusArtifactUploader(
         nexusVersion: 'nexus3',
         protocol: 'http',
         nexusUrl: '${NEXUSIP}:${NEXUSPORT}',
