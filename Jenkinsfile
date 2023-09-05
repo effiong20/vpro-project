@@ -23,12 +23,12 @@ stages{
                 sh 'mvn clean install'
             }
             post {
-                success 
+                success {
                     echo 'Now Archiving...'
                     archiveArtifacts artifacts: '**/*.war'
                 }
             }
-        
+        }
 	    stage('UNIT TEST'){
             steps {
                 sh 'mvn test'
