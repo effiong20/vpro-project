@@ -8,7 +8,7 @@ pipeline{
       SNAP_REPO = 'maven-snap'
       NEXUS_USER = 'admin'
       NEXUS_PASS = 'admin123'
-      RELEASE_REPO = 'maven-hosted'
+      RELEASE_REPO = 'maven-releases'
       CENTRAL_REPO = 'maven-proxy'
       NEXUSIP = '172.31.39.81'
       NEXUSPORT = '8081'
@@ -76,8 +76,8 @@ pipeline{
           }
         }
   
-        stage("Artifact uplaoder"){
-         steps {
+     stage("Artifact uplaoder"){
+      steps{
          nexusArtifactUploader(
         nexusVersion: 'nexus3',
         protocol: 'http',
@@ -94,6 +94,14 @@ pipeline{
         ]
      )
     }
+    }
+       post{
+        always {
+            echo 'Slack Notifications'
+            slackSend channel: '#cicdproject',
+                color: COLOR_MAP[currentBuild.currentResult],
+                message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER} \n More info at: ${env.BUILD_URL}"
+        }
     }
   }
 }
