@@ -9,14 +9,14 @@ pipeline{
         jdk "jdk-8"
     }	
     environment {
-      SNAP_REPO = 'maven-snap'
+      SNAP_REPO = 'snap'
       NEXUS_USER = 'admin'
       NEXUS_PASS = 'admin123'
-      RELEASE_REPO = 'maven-releases'
-      CENTRAL_REPO = 'maven-proxy'
-      NEXUSIP = '172.31.39.81'
+      RELEASE_REPO = 'repo-maven'
+      CENTRAL_REPO = 'download'
+      NEXUSIP = '13.40.78.4'
       NEXUSPORT = '8081'
-      NEXUS_GRP_REPO = 'maven-group'
+      NEXUS_GRP_REPO = 'group'
       NEXUS_LOGIN = 'nexus'
       SONARSERVER = "sonar-server"
       SONARSCANNER = "sonar-pro"
@@ -88,7 +88,7 @@ pipeline{
         nexusUrl: '13.40.78.4:8081',
         groupId: 'QA',
         version: "",
-        repository: 'maven-releases',
+        repository: 'repo-maven',
         credentialsId: 'nexus',
         artifacts: [
             [artifactId: "vproapp",
