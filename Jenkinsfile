@@ -87,7 +87,7 @@ pipeline{
         protocol: 'http',
         nexusUrl: '13.40.78.4:8081',
         groupId: 'QA',
-        version: "",
+        version: "${BUILD_ID}-${BUILD_TIMESTAMP}",
         repository: 'repo-maven',
         credentialsId: 'nexus',
         artifacts: [
