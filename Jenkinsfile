@@ -87,9 +87,9 @@ pipeline{
         protocol: 'http',
         nexusUrl: '13.40.78.4:8081',
         groupId: 'QA',
-        version: "${env.BUILD_ID}-${env.BUILD_TIMESTAMP}",
-        repository: '${RELEASE_REPO}',
-        credentialsId: '${NEXUS_LOGIN}',
+        version: "",
+        repository: 'maven-releases',
+        credentialsId: 'nexus',
         artifacts: [
             [artifactId: "vproapp",
              classifier: '',
