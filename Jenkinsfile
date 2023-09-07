@@ -13,7 +13,7 @@ pipeline{
       NEXUS_USER = 'admin'
       NEXUS_PASS = 'admin123'
       RELEASE_REPO = 'repo-maven'
-      CENTRAL_REPO = 'download'
+      CENTRAL_REPO = 'downloads'
       NEXUSIP = '13.40.78.4'
       NEXUSPORT = '8081'
       NEXUS_GRP_REPO = 'group'
