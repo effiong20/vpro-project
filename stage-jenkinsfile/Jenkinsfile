@@ -102,12 +102,11 @@ pipeline{
      )
     }
     }
-   }
-
-   stage("build image"){
+   
+  stage("build image"){
        steps{
         script {
-            dockerimage = docker.build( imageregistry + ":$BUILD_NUMBER", "./Docker-file/app/multistage/Dockerfile")
+            dockerimage = docker.build( imageregistry + ":$BUILD_NUMBER","./Docker-file/app/multistage/Dockerfile")
         }
        }
    }
@@ -121,6 +120,7 @@ pipeline{
                 }
             }
    }
+   
        post{
         always {
             echo 'Slack Notifications'
@@ -130,3 +130,4 @@ pipeline{
         }
     }
   }
+}
