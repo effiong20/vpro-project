@@ -14,7 +14,7 @@ pipeline{
       NEXUS_PASS = 'admin123'
       RELEASE_REPO = 'repo-maven'
       CENTRAL_REPO = 'downloads'
-      NEXUSIP = '13.40.78.4'
+      NEXUSIP = '172.31.39.81'
       NEXUSPORT = '8081'
       NEXUS_GRP_REPO = 'group'
       NEXUS_LOGIN = 'nexus'
@@ -88,7 +88,7 @@ pipeline{
          nexusArtifactUploader(
         nexusVersion: 'nexus3',
         protocol: 'http',
-        nexusUrl: '13.40.78.4:8081',
+        nexusUrl: '172.31.39.81:8081',
         groupId: 'QA',
         version: "${BUILD_ID}-${BUILD_TIMESTAMP}",
         repository: 'repo-maven',
