@@ -20,6 +20,9 @@ pipeline{
       NEXUS_LOGIN = 'nexus'
       SONARSERVER = "sonar-server"
       SONARSCANNER = "sonar-pro"
+      vproawscred = "ecr:eu-west-2:awscred"
+      imageregistry = "887592648157.dkr.ecr.eu-west-2.amazonaws.com/vprofilejob"
+      imageurl = "http://887592648157.dkr.ecr.eu-west-2.amazonaws.com"
     }
    stages{
         stage('BUILD'){
@@ -101,6 +104,23 @@ pipeline{
     }
    }
 
+   stage("build image"){
+       steps{
+        script {
+            dockerimage = docker.build( imageregistry + ":$BUILD_NUMBER", "./Docker-file/app/multistage/Dockerfile")
+        }
+       }
+   }
+   stage('Deploy to ecr') {
+            steps {
+                script{
+                    docker.withRegistry('imageurl', 'vproawscred') {
+                    dockerimage.push("${env.BUILD_NUMBER}")
+                    dockerimage.push("latest")
+                    }
+                }
+            }
+   }
        post{
         always {
             echo 'Slack Notifications'
