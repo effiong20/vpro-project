@@ -1,7 +1,7 @@
 FROM openjdk:8 AS BUILD_IMAGE
 RUN apt update && apt install maven -y
-RUN git clone https://github.com/effiong20/vpro-project.git
-RUN cd vpro-project && git checkout cicd-jenkins && mvn install
+RUN git clone -b cicd-jenkins https://github.com/effiong20/vpro-project.git
+RUN cd vpro-project &&  && mvn install
 
 
 FROM tomcat:8-jre11
